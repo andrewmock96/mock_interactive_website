@@ -1,0 +1,13 @@
+<footer class="site-footer">
+    <div>
+        <a href="{{ url_for('home') }}" class="footer-brand">{{ site_title }}</a>
+        <p>Thoughtful websites for ambitious businesses.</p>
+    </div>
+    <div class="footer-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('home') }}#services">Services</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+    <p class="copyright">&copy; {{ current_year }} {{ site_title }}</p>
+</footer>

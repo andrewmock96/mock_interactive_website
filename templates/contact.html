@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Start a Project | {{ site_title }}{% endblock %}
+{% block description %}Tell Mock Interactive about your next website project.{% endblock %}
+{% block main_class %}page contact-page{% endblock %}
+
+{% block content %}
+<section class="contact-intro">
+    <div>
+        <p class="eyebrow"><span></span> Start a project</p>
+        <h1>Let’s make something worth visiting.</h1>
+        <p>Tell us about your business, what you need, and where you want to go. We’ll follow up with a few thoughts and a clear next step.</p>
+    </div>
+    <aside>
+        <span>Prefer email?</span>
+        <a href="mailto:{{ site_email }}">{{ site_email }}</a>
+        <p>Typically replies within two business days.</p>
+    </aside>
+</section>
+
+<section class="contact-card">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages" aria-live="polite">
+                {% for category, message in messages %}
+                    <p class="flash {{ category }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <form method="post" action="{{ url_for('contact') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="field-row">
+            <div><label for="name">Your name</label><input id="name" name="name" type="text" value="{{ form_data.name }}" maxlength="100" autocomplete="name" placeholder="Jane Smith" required></div>
+            <div><label for="email">Email address</label><input id="email" name="email" type="email" value="{{ form_data.email }}" maxlength="254" autocomplete="email" placeholder="jane@company.com" required></div>
+        </div>
+        <div><label for="message">Tell us about the project</label><textarea id="message" name="message" rows="7" maxlength="5000" placeholder="What are you looking to build? What should it help your business accomplish?" required>{{ form_data.message }}</textarea></div>
+        <button class="button primary" type="submit">Send project details <span aria-hidden="true">&rarr;</span></button>
+    </form>
+</section>
+{% endblock %}

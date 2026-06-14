@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}About | {{ site_title }}{% endblock %}
+{% block description %}A small web design studio helping businesses communicate clearly and show up confidently online.{% endblock %}
+{% block main_class %}page{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <p class="eyebrow"><span></span> About the studio</p>
+    <h1>Small studio attention.<br>Big-picture thinking.</h1>
+    <p>Mock Interactive helps growing businesses turn good ideas into clear, useful, and memorable websites.</p>
+</section>
+
+<section class="about-grid">
+    <div class="about-statement">
+        <p>We believe a great website should feel unmistakably like your business, make the next step obvious, and never get in the visitor’s way.</p>
+    </div>
+    <div class="about-copy">
+        <h2>Thoughtful from the start</h2>
+        <p>Good design is more than a polished surface. We begin by understanding your goals and your customers, then make every creative and technical decision serve both.</p>
+        <p>The result is a focused website with a strong point of view, built to work beautifully across devices and stay useful long after launch.</p>
+    </div>
+</section>
+
+<section class="principles">
+    <article><span>01</span><h3>Clear over clever</h3><p>Visitors should understand what you do and why it matters without working for it.</p></article>
+    <article><span>02</span><h3>Purpose in every detail</h3><p>Design choices earn their place by supporting your story and your goals.</p></article>
+    <article><span>03</span><h3>Built for real life</h3><p>Fast, accessible, responsive, and straightforward for your team to maintain.</p></article>
+</section>
+{% endblock %}

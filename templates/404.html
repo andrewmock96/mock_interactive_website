@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found | {{ site_title }}{% endblock %}
+{% block description %}The requested page could not be found.{% endblock %}
+{% block main_class %}page{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <p class="eyebrow"><span></span> Error 404</p>
+    <h1>This page missed the launch.</h1>
+    <p>The page you requested does not exist or may have moved somewhere new.</p>
+    <a class="button primary" href="{{ url_for('home') }}">Return home <span aria-hidden="true">&rarr;</span></a>
+</section>
+{% endblock %}

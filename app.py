@@ -5,10 +5,12 @@ from xml.etree import ElementTree
 from flask import Flask, Response, flash, redirect, render_template, request, url_for
 from dotenv import load_dotenv
 from flask_wtf.csrf import CSRFError, CSRFProtect
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 load_dotenv()
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
 IS_PRODUCTION = os.environ.get("FLASK_ENV") == "production"
 SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", "change-me-in-production")
 
@@ -24,7 +26,11 @@ csrf = CSRFProtect(app)
 
 
 def site_url():
-    return os.environ.get("SITE_URL", "http://localhost:5000").rstrip("/")
+    return (
+        os.environ.get("SITE_URL")
+        or os.environ.get("RENDER_EXTERNAL_URL")
+        or "http://localhost:5000"
+    ).rstrip("/")
 
 
 @app.context_processor
@@ -32,8 +38,8 @@ def inject_site_metadata():
     return {
         "site_title": os.environ.get("SITE_TITLE", "Mock Interactive"),
         "site_description": os.environ.get(
-            "SITE_DESCRIPTION",
-            "Strategy, design, and development for thoughtful business websites.",
+        "SITE_DESCRIPTION",
+            "Atmospheric games, meaningful systems, and unforgettable interactive worlds.",
         ),
         "site_phone": os.environ.get("SITE_PHONE", "+1 (555) 123-4567"),
         "site_email": os.environ.get("SITE_EMAIL", "hello@mockinteractive.com"),
@@ -46,6 +52,11 @@ def inject_site_metadata():
 @app.route("/")
 def home():
     return render_template("index.html")
+
+
+@app.route("/health")
+def health():
+    return {"status": "ok"}
 
 
 @app.route("/about")

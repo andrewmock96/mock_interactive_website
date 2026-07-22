@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}Start a Project | {{ site_title }}{% endblock %}
-{% block description %}Tell Mock Interactive about your next website project.{% endblock %}
-{% block main_class %}page contact-page{% endblock %}
+{% block title %}Begin a Project | {{ site_title }}{% endblock %}
+{% block description %}Start a conversation with Mock Interactive about your next game, world, or interactive experience.{% endblock %}
+{% block main_class %}interior contact-page{% endblock %}
 
 {% block content %}
 <section class="contact-intro">
     <div>
-        <p class="eyebrow"><span></span> Start a project</p>
-        <h1>Let’s make something worth visiting.</h1>
-        <p>Tell us about your business, what you need, and where you want to go. We’ll follow up with a few thoughts and a clear next step.</p>
+        <p class="eyebrow">Open the gate</p>
+        <h1>Bring us the spark.<br><em>We’ll help forge the world.</em></h1>
+        <p>Tell us what you are building, where it is headed, and what you want players to feel.</p>
     </div>
     <aside>
-        <span>Prefer email?</span>
+        <span>Direct correspondence</span>
         <a href="mailto:{{ site_email }}">{{ site_email }}</a>
-        <p>Typically replies within two business days.</p>
+        <p>Replies typically arrive within two business days.</p>
     </aside>
 </section>
 
@@ -22,21 +22,18 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <div class="flash-messages" aria-live="polite">
-                {% for category, message in messages %}
-                    <p class="flash {{ category }}">{{ message }}</p>
-                {% endfor %}
+                {% for category, message in messages %}<p class="flash {{ category }}">{{ message }}</p>{% endfor %}
             </div>
         {% endif %}
     {% endwith %}
-
     <form method="post" action="{{ url_for('contact') }}">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="field-row">
-            <div><label for="name">Your name</label><input id="name" name="name" type="text" value="{{ form_data.name }}" maxlength="100" autocomplete="name" placeholder="Jane Smith" required></div>
-            <div><label for="email">Email address</label><input id="email" name="email" type="email" value="{{ form_data.email }}" maxlength="254" autocomplete="email" placeholder="jane@company.com" required></div>
+            <div><label for="name">Your name</label><input id="name" name="name" type="text" value="{{ form_data.name }}" maxlength="100" autocomplete="name" placeholder="Name or studio" required></div>
+            <div><label for="email">Email address</label><input id="email" name="email" type="email" value="{{ form_data.email }}" maxlength="254" autocomplete="email" placeholder="you@studio.com" required></div>
         </div>
-        <div><label for="message">Tell us about the project</label><textarea id="message" name="message" rows="7" maxlength="5000" placeholder="What are you looking to build? What should it help your business accomplish?" required>{{ form_data.message }}</textarea></div>
-        <button class="button primary" type="submit">Send project details <span aria-hidden="true">&rarr;</span></button>
+        <div><label for="message">The project</label><textarea id="message" name="message" rows="8" maxlength="5000" placeholder="What are you building? What stage is it in? Where could we help?" required>{{ form_data.message }}</textarea></div>
+        <button class="button primary" type="submit">Send the signal <span aria-hidden="true">↗</span></button>
     </form>
 </section>
 {% endblock %}

@@ -12,12 +12,16 @@ class StarterSiteTests(unittest.TestCase):
     def test_home_page_renders(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
-        self.assertIn("Websites that make a strong first impression.", response.get_data(as_text=True))
+        self.assertIn("We forge worlds", response.get_data(as_text=True))
+        self.assertIn("Independent game studio", response.get_data(as_text=True))
 
     def test_public_pages_render(self):
-        for path in ("/about", "/contact", "/robots.txt", "/sitemap.xml"):
+        for path in ("/about", "/contact", "/robots.txt", "/sitemap.xml", "/health"):
             with self.subTest(path=path):
                 self.assertEqual(self.client.get(path).status_code, 200)
+
+    def test_health_check_reports_ok(self):
+        self.assertEqual(self.client.get("/health").get_json(), {"status": "ok"})
 
     def test_contact_page_accepts_messages(self):
         response = self.client.post(
@@ -41,7 +45,7 @@ class StarterSiteTests(unittest.TestCase):
     def test_unknown_page_uses_404_template(self):
         response = self.client.get("/missing")
         self.assertEqual(response.status_code, 404)
-        self.assertIn("Page not found", response.get_data(as_text=True))
+        self.assertIn("The trail ends here.", response.get_data(as_text=True))
 
     def test_security_headers_are_set(self):
         response = self.client.get("/")

@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: mock-interactive
+    runtime: python
+    plan: free
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT app:app
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_SECRET_KEY
+        generateValue: true
+      - key: SITE_TITLE
+        value: Mock Interactive
+      - key: SITE_DESCRIPTION
+        value: Atmospheric games, meaningful systems, and unforgettable interactive worlds.
+      - key: SITE_EMAIL
+        sync: false

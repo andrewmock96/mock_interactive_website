@@ -18,3 +18,8 @@ desktop.ini
 
 # Ignore generated image-converter output when using a dedicated output folder
 static/images/converted/
+
+# Ignore local design references and browser verification captures
+style/
+visual-checks/
+static/images/txtav/

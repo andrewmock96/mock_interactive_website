@@ -12,35 +12,48 @@ class StarterSiteTests(unittest.TestCase):
     def test_home_page_renders(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
-        self.assertIn("We forge worlds", response.get_data(as_text=True))
-        self.assertIn("Independent game studio", response.get_data(as_text=True))
+        self.assertIn("File Forge 1.0", response.get_data(as_text=True))
+        self.assertIn("A Windows desktop utility", response.get_data(as_text=True))
 
-    def test_public_pages_render(self):
-        for path in ("/about", "/contact", "/robots.txt", "/sitemap.xml", "/health"):
+    def test_public_utility_routes_render(self):
+        for path in ("/robots.txt", "/sitemap.xml", "/health"):
             with self.subTest(path=path):
                 self.assertEqual(self.client.get(path).status_code, 200)
 
+    def test_future_studio_pages_are_not_routed(self):
+        for path in ("/worlds", "/about", "/contact"):
+            with self.subTest(path=path):
+                self.assertEqual(self.client.get(path).status_code, 404)
+
+    def test_tools_page_has_file_forge_release_download_and_repo_links(self):
+        response = self.client.get("/tools")
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.headers["Location"], "/")
+        body = self.client.get("/").get_data(as_text=True)
+        self.assertIn("File Forge 1.0", body)
+        self.assertIn("Download for Windows", body)
+        self.assertIn("View on GitHub", body)
+        self.assertIn("fileforge-1.0-windows-x64.zip", body)
+        self.assertIn("https://github.com/andrewmock96/FileForge", body)
+        self.assertIn("buying the developer a Mountain Dew", body)
+        self.assertIn("https://ko-fi.com/mockinteractive", body)
+        self.assertIn("Buy a Mountain Dew", body)
+        self.assertIn("Only required for the initial download and optional support links", body)
+        self.assertIn("Saved you some time, or a headache?", body)
+        self.assertIn("remember separate starting folders", body)
+        self.assertIn("Refreshes available destination capacity every five seconds", body)
+        self.assertIn("Optional full input and finished-output verification can be disabled", body)
+        self.assertIn("cannot fully verify every source or output byte", body)
+        self.assertIn("ISO", body)
+        self.assertIn("GOD", body)
+        self.assertIn("XEX", body)
+
+        screenshot = self.client.get("/static/images/tools/file-forge-ui.png")
+        self.assertEqual(screenshot.status_code, 200)
+        self.assertGreater(len(screenshot.data), 1_000_000)
+
     def test_health_check_reports_ok(self):
         self.assertEqual(self.client.get("/health").get_json(), {"status": "ok"})
-
-    def test_contact_page_accepts_messages(self):
-        response = self.client.post(
-            "/contact",
-            data={"name": "Ada", "email": "ada@example.com", "message": "Hello"},
-            follow_redirects=False,
-        )
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.headers["Location"], "/contact")
-
-    def test_contact_page_rejects_invalid_email_and_keeps_form_data(self):
-        response = self.client.post(
-            "/contact",
-            data={"name": "Ada", "email": "invalid", "message": "Hello"},
-        )
-        body = response.get_data(as_text=True)
-        self.assertEqual(response.status_code, 400)
-        self.assertIn("Please enter a valid email address.", body)
-        self.assertIn('value="Ada"', body)
 
     def test_unknown_page_uses_404_template(self):
         response = self.client.get("/missing")

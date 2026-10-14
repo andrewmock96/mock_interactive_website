@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}File Forge | Mock Interactive{% endblock %}
+{% block description %}File Forge converts Xbox and Xbox 360 backups between ISO, GOD, and XEX formats on Windows.{% endblock %}
+{% block main_class %}interior tools-page{% endblock %}
+
+{% block content %}
+<section class="tools-hero">
+    <div class="tools-hero-copy">
+        <p class="product-label">File Forge 1.0 · Windows 10/11 x64</p>
+        <h1>File Forge</h1>
+        <p class="product-summary">A Windows desktop utility for converting lawfully obtained Xbox and Xbox 360 backups between ISO images, Games on Demand packages, and extracted XEX folders.</p>
+        <div class="hero-actions">
+            <a class="button primary download-button" href="{{ fileforge_download_url }}">Download for Windows <span aria-hidden="true">↓</span></a>
+            <a class="button repo-button" href="{{ fileforge_repo_url }}" target="_blank" rel="noopener noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="download-meta">Windows 10/11 · Version 1.0 · Portable ZIP</p>
+        <ul class="hero-facts" aria-label="File Forge highlights">
+            <li>Works offline</li>
+            <li>No account</li>
+            <li>No telemetry</li>
+        </ul>
+    </div>
+</section>
+
+<section class="product-preview section-shell" aria-labelledby="preview-title">
+    <div class="section-heading">
+        <p class="section-kicker">Application</p>
+        <h2 id="preview-title">One window for every conversion.</h2>
+        <p>Select a conversion mode, add one or more jobs, choose an output folder, and start the queue. New jobs can be added while the queue is running, and applied folder and verification preferences are remembered after File Forge closes.</p>
+    </div>
+    <figure>
+        <img src="{{ url_for('static', filename='images/tools/file-forge-ui.png') }}" alt="File Forge 1.0 interface with ISO to GOD, XEX to GOD, and GOD to XEX conversion modes">
+        <figcaption>File Forge 1.0 running on Windows.</figcaption>
+    </figure>
+</section>
+
+<section id="conversions" class="conversion-section section-shell">
+    <div class="section-heading narrow">
+        <p class="section-kicker">Supported conversions</p>
+        <h2>What File Forge does</h2>
+    </div>
+    <div class="conversion-list">
+        <article>
+            <div class="conversion-name"><span>ISO</span><i aria-hidden="true">→</i><span>GOD</span></div>
+            <div>
+                <h3>ISO to Games on Demand</h3>
+                <p>Converts a supported Xbox or Xbox 360 ISO into a GOD package. Multi-disc sets are detected and kept in separate disc folders.</p>
+            </div>
+        </article>
+        <article>
+            <div class="conversion-name"><span>XEX</span><i aria-hidden="true">→</i><span>GOD</span></div>
+            <div>
+                <h3>XEX folder to Games on Demand</h3>
+                <p>Packages an extracted game folder containing <code>default.xex</code> as unsigned GOD content. Available Xbox 360 title artwork is copied into the package.</p>
+            </div>
+        </article>
+        <article>
+            <div class="conversion-name"><span>GOD</span><i aria-hidden="true">→</i><span>XEX</span></div>
+            <div>
+                <h3>Games on Demand to XEX folder</h3>
+                <p>Checks and extracts a GOD package into normal game files. Related multi-disc packages stored together are grouped automatically.</p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="details-section">
+    <div class="section-shell details-grid">
+        <div>
+            <p class="section-kicker">How it works</p>
+            <h2>A short, repeatable process</h2>
+            <ol class="steps-list">
+                <li><span>1</span><div><strong>Choose a mode</strong><p>Select ISO → GOD, XEX → GOD, or GOD → XEX.</p></div></li>
+                <li><span>2</span><div><strong>Add files</strong><p>Add a single item or build a queue.</p></div></li>
+                <li><span>3</span><div><strong>Choose an output folder</strong><p>File Forge keeps GOD and XEX output separated.</p></div></li>
+                <li><span>4</span><div><strong>Convert</strong><p>Each job completes required format checks before it is marked finished.</p></div></li>
+            </ol>
+        </div>
+        <div>
+            <p class="section-kicker">Checks and safeguards</p>
+            <h2>Checks that stay out of the way</h2>
+            <ul class="plain-list">
+                <li>Reads source files without modifying them.</li>
+                <li>Refuses to merge into a nonempty output folder.</li>
+                <li>Refreshes available destination capacity every five seconds and checks required space again before writing.</li>
+                <li>Keeps required GOD structure, header, part-size, allocation, and XDVDFS checks active.</li>
+                <li>Optional full input and finished-output verification can be disabled for faster conversions, especially on HDDs. Skipping it means File Forge cannot fully verify every source or output byte.</li>
+                <li>Removes incomplete failed output by default, or retains it when troubleshooting is enabled.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="details-section preferences-section">
+    <div class="section-shell details-grid">
+        <div>
+            <p class="section-kicker">Options</p>
+            <h2>Set it once</h2>
+            <p>File Forge can remember separate starting folders for ISO images, GOD packages, and XEX game folders. Leave any folder unset and the normal File Explorer location is used.</p>
+        </div>
+        <div>
+            <p class="section-kicker">Output</p>
+            <h2>Keep destinations separate</h2>
+            <p>Choose independent default locations for generated GOD packages and extracted XEX folders. Applied settings remain available the next time File Forge starts, and Restore returns the recommended checks and cleanup behavior.</p>
+        </div>
+    </div>
+</section>
+
+<section class="requirements-section section-shell">
+    <div class="section-heading narrow">
+        <p class="section-kicker">Requirements</p>
+        <h2>Before you install</h2>
+    </div>
+    <dl class="requirements-list">
+        <div><dt>Operating system</dt><dd>Windows 10 or Windows 11, 64-bit</dd></div>
+        <div><dt>Installation</dt><dd>Portable application; extract the full ZIP before running it</dd></div>
+        <div><dt>Internet connection</dt><dd>Only required for the initial download and optional support links</dd></div>
+        <div><dt>Account</dt><dd>Not required</dd></div>
+        <div><dt>Current release</dt><dd>Version 1.0</dd></div>
+    </dl>
+    <div class="release-box">
+        <div>
+            <h3>File Forge 1.0</h3>
+            <p>Download the portable Windows package directly, or open GitHub for release notes, checksums, documentation, and issue reporting.</p>
+        </div>
+        <div class="release-actions">
+            <a class="button primary download-button" href="{{ fileforge_download_url }}">Download for Windows <span aria-hidden="true">↓</span></a>
+            <a class="button repo-button" href="{{ fileforge_repo_url }}" target="_blank" rel="noopener noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+    </div>
+</section>
+
+<section class="support-section section-shell" aria-labelledby="support-title">
+    <p class="section-kicker">Support development</p>
+    <div>
+        <h2 id="support-title">Enjoy the tool? Saved you some time or a headache?</h2>
+        <p>Consider buying the developer a Mountain Dew. Support is optional and helps cover testing, maintenance, and future updates.</p>
+    </div>
+    {% if support_url %}
+    <a class="button repo-button" href="{{ support_url }}" target="_blank" rel="noopener noreferrer">Buy a Mountain Dew <span aria-hidden="true">↗</span></a>
+    {% else %}
+    <span class="support-pending">Support link coming soon</span>
+    {% endif %}
+</section>
+
+<section class="legal-note section-shell">
+    <p><strong>Important:</strong> File Forge is an unofficial utility and is not affiliated with or endorsed by Microsoft. Use it only with content you own or are legally authorized to copy. GOD packages created by File Forge are unsigned and are not expected to run on an unmodified retail console.</p>
+</section>
+{% endblock %}

@@ -1,24 +1,28 @@
 <footer class="site-footer">
-    <div class="footer-mark" aria-hidden="true"><span></span><b>MI</b><span></span></div>
+    <div class="footer-mark" aria-hidden="true"></div>
     <div class="footer-grid">
         <div>
             <p class="footer-kicker">Mock Interactive</p>
-            <h2>Build a world<br>worth entering.</h2>
+            <h2>File Forge</h2>
+            <p class="footer-summary">A local conversion utility for Xbox and Xbox 360 backup formats.</p>
         </div>
         <div class="footer-links">
-            <a href="{{ url_for('home') }}#work">Worlds</a>
-            <a href="{{ url_for('home') }}#capabilities">Capabilities</a>
+            {# Future studio navigation:
+            <a href="{{ url_for('worlds') }}#work">Worlds</a>
+            <a href="{{ url_for('worlds') }}#capabilities">Capabilities</a>
             <a href="{{ url_for('about') }}">The studio</a>
             <a href="{{ url_for('contact') }}">Start a project</a>
+            #}
+            <a href="{{ url_for('home') }}">File Forge</a>
         </div>
         <div class="footer-contact">
             <p>Inquiries</p>
             <a href="mailto:{{ site_email }}">{{ site_email }}</a>
-            <span>Independent · Working worldwide</span>
+            <span>Developed by Andrew Mock</span>
         </div>
     </div>
     <div class="footer-bottom">
         <span>© {{ current_year }} Mock Interactive</span>
-        <span>Independent game &amp; interactive studio</span>
+        <span>File Forge 1.0 · Windows</span>
     </div>
 </footer>

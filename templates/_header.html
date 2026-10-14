@@ -3,9 +3,12 @@
         <img src="{{ url_for('static', filename='images/brand/mock-interactive-wordmark.png') }}" alt="Mock Interactive">
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
-        <a href="{{ url_for('home') }}#work">Worlds</a>
-        <a href="{{ url_for('home') }}#capabilities">Capabilities</a>
+        {# Future studio navigation:
+        <a href="{{ url_for('worlds') }}#work">Worlds</a>
+        <a href="{{ url_for('worlds') }}#capabilities">Capabilities</a>
         <a href="{{ url_for('about') }}">Studio</a>
         <a class="nav-cta" href="{{ url_for('contact') }}">Begin a project <span aria-hidden="true">↗</span></a>
+        #}
+        <span class="nav-current">File Forge 1.0</span>
     </nav>
 </header>

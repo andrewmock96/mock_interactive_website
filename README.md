@@ -1,6 +1,6 @@
 # Mock Interactive Website
 
-The production-ready Flask website for Mock Interactive, with home, about, contact, 404, robots, sitemap, and health-check routes.
+The production-ready Flask website for Mock Interactive, currently focused exclusively on File Forge. The games, studio, and contact templates are preserved in the project with their routes and navigation disabled until needed.
 
 ## Start a new site
 
@@ -13,6 +13,14 @@ The production-ready Flask website for Mock Interactive, with home, about, conta
 The contact form validates input and displays a success message, but it intentionally does not send or store submissions. Connect an email provider, CRM, or database before launch.
 
 Before production, set `FLASK_ENV=production`, use a unique long `FLASK_SECRET_KEY`, and replace the placeholder contact details. `SITE_URL` is optional on Render because the app automatically uses `RENDER_EXTERNAL_URL`.
+
+The File Forge download and repository buttons use `FILEFORGE_DOWNLOAD_URL`
+and `FILEFORGE_REPO_URL`. Their defaults target the `andrewmock96/FileForge`
+GitHub project; override them in the deployment environment if the final
+repository name or hosting location changes.
+
+`SUPPORT_URL` controls the optional “Buy a Mountain Dew” support button and
+defaults to the official Mock Interactive Ko-fi page.
 
 ## Deploy to Render
 

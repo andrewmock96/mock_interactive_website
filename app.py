@@ -44,6 +44,17 @@ def inject_site_metadata():
         "site_phone": os.environ.get("SITE_PHONE", "+1 (555) 123-4567"),
         "site_email": os.environ.get("SITE_EMAIL", "hello@mockinteractive.com"),
         "site_url": site_url(),
+        "fileforge_download_url": os.environ.get(
+            "FILEFORGE_DOWNLOAD_URL",
+            "https://github.com/andrewmock96/FileForge/releases/latest/download/fileforge-1.0-windows-x64.zip",
+        ),
+        "fileforge_repo_url": os.environ.get(
+            "FILEFORGE_REPO_URL",
+            "https://github.com/andrewmock96/FileForge",
+        ),
+        "support_url": os.environ.get(
+            "SUPPORT_URL", "https://ko-fi.com/mockinteractive"
+        ).strip(),
         "canonical_url": f"{site_url()}{request.path}",
         "current_year": datetime.now(timezone.utc).year,
     }
@@ -51,6 +62,12 @@ def inject_site_metadata():
 
 @app.route("/")
 def home():
+    return render_template("tools.html")
+
+
+# Preserved for a future games-focused launch.
+# @app.route("/worlds")
+def worlds():
     return render_template("index.html")
 
 
@@ -59,9 +76,14 @@ def health():
     return {"status": "ok"}
 
 
-@app.route("/about")
+# @app.route("/about")
 def about():
     return render_template("about.html")
+
+
+@app.route("/tools")
+def tools():
+    return redirect(url_for("home"), code=302)
 
 
 @app.route("/robots.txt")
@@ -76,7 +98,7 @@ def sitemap():
     ElementTree.register_namespace("", namespace)
     urlset = ElementTree.Element(f"{{{namespace}}}urlset")
 
-    for endpoint in ("home", "about", "contact"):
+    for endpoint in ("home",):
         url_element = ElementTree.SubElement(urlset, f"{{{namespace}}}url")
         location = ElementTree.SubElement(url_element, f"{{{namespace}}}loc")
         location.text = f"{site_url()}{url_for(endpoint)}"
@@ -85,7 +107,7 @@ def sitemap():
     return Response(xml, mimetype="application/xml")
 
 
-@app.route("/contact", methods=["GET", "POST"])
+# @app.route("/contact", methods=["GET", "POST"])
 def contact():
     form_data = {"name": "", "email": "", "message": ""}
 
@@ -119,7 +141,7 @@ def not_found(_error):
 @app.errorhandler(CSRFError)
 def csrf_error(_error):
     flash("Your form session expired. Please try again.", "error")
-    return redirect(url_for("contact"))
+    return redirect(url_for("home"))
 
 
 @app.after_request

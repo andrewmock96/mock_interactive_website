@@ -739,7 +739,7 @@ code { padding: .08em .35em; color: var(--crown-gold); background: rgba(232,165,
 
 @media (max-width: 560px) {
   .nav-current { font-size: .6rem; }
-  .tools-page .tools-hero { min-height: 700px; padding: 9rem 1rem 4rem; background-position: 34% center; }
+  .tools-page .tools-hero { min-height: 700px; padding: 9rem 1rem 4rem; background-position: 35% center; }
   .tools-page .tools-hero h1 { font-size: clamp(3.6rem, 18vw, 5rem); }
   .tools-page .hero-actions { align-items: flex-start; }
   .hero-facts { flex-wrap: wrap; gap: .7rem 1rem; }

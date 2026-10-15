@@ -72,7 +72,7 @@ class StarterSiteTests(unittest.TestCase):
         response = self.client.get("/static/css/style.css")
         self.assertEqual(response.status_code, 200)
         css = response.get_data(as_text=True)
-        self.assertIn("background-position: 34% center", css)
+        self.assertIn("background-position: 35% center", css)
         response.close()
 
     def test_health_check_reports_ok(self):

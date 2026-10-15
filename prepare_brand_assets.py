@@ -51,21 +51,21 @@ def export_wordmark() -> None:
 
 
 def export_site_icons() -> None:
-    """Create crisp square browser and search icons from the approved disc logo."""
-    source = LOGOS / "Mock_Interactive_Logo_2_4096_px.png"
+    """Create crisp square browser and search icons from the approved wordmark."""
+    source = LOGOS / "Mock_Interactive_Wordmark_4k_Transparent.png"
     with Image.open(source) as image:
-        disc = image.convert("RGBA")
-        alpha_box = disc.getchannel("A").getbbox()
+        wordmark = image.convert("RGBA")
+        alpha_box = wordmark.getchannel("A").getbbox()
         if alpha_box:
-            disc = disc.crop(alpha_box)
+            wordmark = wordmark.crop(alpha_box)
 
         def render(size: int) -> Image.Image:
             canvas = Image.new("RGBA", (size, size), (5, 5, 5, 255))
-            maximum = (round(size * 0.94), round(size * 0.94))
-            icon = disc.copy()
-            icon.thumbnail(maximum, Image.Resampling.LANCZOS)
-            position = ((size - icon.width) // 2, (size - icon.height) // 2)
-            canvas.alpha_composite(icon, position)
+            maximum = (round(size * 0.90), round(size * 0.90))
+            mark = wordmark.copy()
+            mark.thumbnail(maximum, Image.Resampling.LANCZOS)
+            position = ((size - mark.width) // 2, (size - mark.height) // 2)
+            canvas.alpha_composite(mark, position)
             return canvas.convert("RGB")
 
         for size in (48, 192, 512):

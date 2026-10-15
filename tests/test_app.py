@@ -68,6 +68,13 @@ class StarterSiteTests(unittest.TestCase):
                 self.assertGreater(len(response.data), 100)
                 response.close()
 
+    def test_mobile_hero_focuses_the_disc(self):
+        response = self.client.get("/static/css/style.css")
+        self.assertEqual(response.status_code, 200)
+        css = response.get_data(as_text=True)
+        self.assertIn("background-position: 46% center", css)
+        response.close()
+
     def test_health_check_reports_ok(self):
         self.assertEqual(self.client.get("/health").get_json(), {"status": "ok"})
 

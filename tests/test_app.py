@@ -97,6 +97,14 @@ class StarterSiteTests(unittest.TestCase):
         self.assertIn("background-position: 35% center", css)
         response.close()
 
+    def test_stress_metrics_share_one_desktop_row(self):
+        response = self.client.get("/static/css/style.css")
+        self.assertEqual(response.status_code, 200)
+        css = response.get_data(as_text=True)
+        self.assertIn(".stress-metrics {\n  display: flex;", css)
+        self.assertIn(".stress-metrics div { display: flex;", css)
+        response.close()
+
     def test_health_check_reports_ok(self):
         self.assertEqual(self.client.get("/health").get_json(), {"status": "ok"})
 

@@ -10,6 +10,12 @@
     <meta property="og:title" content="{{ self.title() | striptags }}">
     <meta property="og:description" content="{{ self.description() | striptags }}">
     <meta property="og:url" content="{{ canonical_url }}">
+    <meta name="theme-color" content="#050505">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" sizes="any">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ url_for('static', filename='images/brand/favicon-48.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ url_for('static', filename='images/brand/favicon-192.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/brand/apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     {% block head %}{% endblock %}
 </head>

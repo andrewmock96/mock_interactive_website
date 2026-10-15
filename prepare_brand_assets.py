@@ -7,6 +7,7 @@ from PIL import Image
 
 PROJECT = Path(__file__).resolve().parent
 STYLING = PROJECT.parent.parent / "Styling" / "Themes"
+LOGOS = PROJECT.parent.parent / "Styling" / "Logos"
 OUTPUT = PROJECT / "static" / "images" / "brand"
 OUTPUT.mkdir(parents=True, exist_ok=True)
 
@@ -49,7 +50,36 @@ def export_wordmark() -> None:
         mark.save(OUTPUT / "mock-interactive-wordmark.png", optimize=True)
 
 
+def export_site_icons() -> None:
+    """Create crisp square browser and search icons from the approved wordmark."""
+    source = LOGOS / "Mock_Interactive_Wordmark_4k_Transparent.png"
+    with Image.open(source) as image:
+        wordmark = image.convert("RGBA")
+        alpha_box = wordmark.getchannel("A").getbbox()
+        if alpha_box:
+            wordmark = wordmark.crop(alpha_box)
+
+        def render(size: int) -> Image.Image:
+            canvas = Image.new("RGBA", (size, size), (5, 5, 5, 255))
+            maximum = (round(size * 0.90), round(size * 0.90))
+            mark = wordmark.copy()
+            mark.thumbnail(maximum, Image.Resampling.LANCZOS)
+            position = ((size - mark.width) // 2, (size - mark.height) // 2)
+            canvas.alpha_composite(mark, position)
+            return canvas.convert("RGB")
+
+        for size in (48, 192, 512):
+            render(size).save(OUTPUT / f"favicon-{size}.png", optimize=True)
+        render(180).save(OUTPUT / "apple-touch-icon.png", optimize=True)
+        render(256).save(
+            PROJECT / "static" / "favicon.ico",
+            format="ICO",
+            sizes=[(16, 16), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)],
+        )
+
+
 if __name__ == "__main__":
     export_background()
     export_supporting_backgrounds()
     export_wordmark()
+    export_site_icons()

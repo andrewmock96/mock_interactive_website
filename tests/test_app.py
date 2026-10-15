@@ -39,7 +39,7 @@ class StarterSiteTests(unittest.TestCase):
         self.assertIn("https://ko-fi.com/mockinteractive", body)
         self.assertIn("Buy a Mountain Dew", body)
         self.assertIn("Only required for the initial download and optional support links", body)
-        self.assertIn("Saved you some time, or a headache?", body)
+        self.assertIn("Saved you some time or a headache?", body)
         self.assertIn("remember separate starting folders", body)
         self.assertIn("Refreshes available destination capacity every five seconds", body)
         self.assertIn("Optional full input and finished-output verification can be disabled", body)
@@ -51,6 +51,22 @@ class StarterSiteTests(unittest.TestCase):
         screenshot = self.client.get("/static/images/tools/file-forge-ui.png")
         self.assertEqual(screenshot.status_code, 200)
         self.assertGreater(len(screenshot.data), 1_000_000)
+
+    def test_brand_icons_are_linked_and_served(self):
+        body = self.client.get("/").get_data(as_text=True)
+        for path in (
+            "/static/favicon.ico",
+            "/static/images/brand/favicon-48.png",
+            "/static/images/brand/favicon-192.png",
+            "/static/images/brand/apple-touch-icon.png",
+            "/static/site.webmanifest",
+        ):
+            with self.subTest(path=path):
+                self.assertIn(path, body)
+                response = self.client.get(path)
+                self.assertEqual(response.status_code, 200)
+                self.assertGreater(len(response.data), 100)
+                response.close()
 
     def test_health_check_reports_ok(self):
         self.assertEqual(self.client.get("/health").get_json(), {"status": "ok"})

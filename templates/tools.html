@@ -36,6 +36,26 @@
     </figure>
 </section>
 
+<section class="stress-test section-shell" aria-labelledby="stress-test-title">
+    <div class="stress-test-heading">
+        <div>
+            <p class="section-kicker">Batch stress test</p>
+            <h2 id="stress-test-title">63 conversions. Zero failures.</h2>
+        </div>
+        <p>A 63-conversion batch completed in 28 minutes 38 seconds, averaging 27.3 seconds per conversion. The test covered 60 titles: 58 single-disc titles and 2 multi-disc titles.</p>
+    </div>
+    <dl class="stress-metrics" aria-label="File Forge stress-test results">
+        <div><dt>Conversions</dt><dd>63</dd></div>
+        <div><dt>Titles</dt><dd>60</dd></div>
+        <div><dt>Failures</dt><dd>0</dd></div>
+        <div><dt>Average</dt><dd>27.3 sec</dd></div>
+    </dl>
+    <figure>
+        <img src="{{ url_for('static', filename='images/tools/file-forge-stress-test.png') }}" alt="File Forge stress test showing 63 of 63 conversions completed with no failures in 28 minutes 38 seconds">
+        <figcaption>Completed File Forge batch test. Game names, identifiers, and local paths are redacted. Results reflect the tested hardware, storage, and source files; conversion times will vary.</figcaption>
+    </figure>
+</section>
+
 <section id="conversions" class="conversion-section section-shell">
     <div class="section-heading narrow">
         <p class="section-kicker">Supported conversions</p>

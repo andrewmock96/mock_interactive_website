@@ -48,6 +48,10 @@ class StarterSiteTests(unittest.TestCase):
         self.assertIn("Refreshes available destination capacity every five seconds", body)
         self.assertIn("Optional full input and finished-output verification can be disabled", body)
         self.assertIn("cannot fully verify every source or output byte", body)
+        self.assertIn("63 conversions. Zero failures.", body)
+        self.assertIn("60 titles: 58 single-disc titles and 2 multi-disc titles", body)
+        self.assertIn("28 minutes 38 seconds", body)
+        self.assertIn("27.3 seconds per conversion", body)
         self.assertIn("ISO", body)
         self.assertIn("GOD", body)
         self.assertIn("XEX", body)
@@ -55,6 +59,12 @@ class StarterSiteTests(unittest.TestCase):
         screenshot = self.client.get("/static/images/tools/file-forge-ui.png")
         self.assertEqual(screenshot.status_code, 200)
         self.assertGreater(len(screenshot.data), 1_000_000)
+        screenshot.close()
+
+        stress_test = self.client.get("/static/images/tools/file-forge-stress-test.png")
+        self.assertEqual(stress_test.status_code, 200)
+        self.assertGreater(len(stress_test.data), 100_000)
+        stress_test.close()
 
     def test_brand_icons_are_linked_and_served(self):
         body = self.client.get("/").get_data(as_text=True)

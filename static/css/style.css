@@ -634,6 +634,28 @@ code { padding: .08em .35em; color: var(--crown-gold); background: rgba(232,165,
   color: var(--smoke);
   font-size: .7rem;
 }
+.stress-test { padding: 8rem 0; border-bottom: 1px solid var(--line-soft); }
+.stress-test-heading {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 5rem;
+  align-items: end;
+  margin-bottom: 3rem;
+}
+.stress-test-heading h2 { margin: 0; font-size: clamp(2rem, 3.5vw, 3.25rem); line-height: 1.12; }
+.stress-test-heading > p { max-width: 720px; margin: 0; color: var(--bone); }
+.stress-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0 0 2.5rem;
+  border-block: 1px solid var(--line);
+}
+.stress-metrics div { display: flex; flex-direction: column; gap: .3rem; padding: 1.4rem 0; }
+.stress-metrics dt { color: var(--smoke); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; }
+.stress-metrics dd { order: -1; margin: 0; color: var(--crown-gold); font-size: 1.7rem; line-height: 1; }
+.stress-test figure { margin: 0; }
+.stress-test img { display: block; width: 100%; border: 1px solid rgba(185,170,142,.18); border-radius: 4px; }
+.stress-test figcaption { margin-top: .65rem; color: var(--smoke); font-size: .7rem; }
 
 .conversion-section { padding: 8rem 0; }
 .conversion-section > .section-heading { margin-bottom: 3rem; }
@@ -737,6 +759,7 @@ code { padding: .08em .35em; color: var(--crown-gold); background: rgba(232,165,
 @media (max-width: 900px) {
   .tools-page .tools-hero { min-height: 680px; padding-inline: 1.5rem; background-position: 67% center; }
   .product-preview { grid-template-columns: 1fr; gap: 3rem; padding: 6rem 0; }
+  .stress-test-heading { grid-template-columns: 1fr; gap: 1.5rem; }
   .conversion-list article { grid-template-columns: 210px 1fr; gap: 2rem; }
   .details-grid { grid-template-columns: 1fr; gap: 5rem; }
 }
@@ -748,7 +771,9 @@ code { padding: .08em .35em; color: var(--crown-gold); background: rgba(232,165,
   .tools-page .hero-actions { align-items: flex-start; }
   .hero-facts { flex-wrap: wrap; gap: .7rem 1rem; }
   .hero-facts li + li::before { margin-right: 1rem; }
+  .stress-metrics { grid-template-columns: 1fr 1fr; }
   .product-preview,
+  .stress-test,
   .conversion-section,
   .details-section,
   .requirements-section { padding-block: 5rem; }

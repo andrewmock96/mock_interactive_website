@@ -37,7 +37,7 @@ class StarterSiteTests(unittest.TestCase):
         self.assertIn("https://github.com/andrewmock96/FileForge", body)
         self.assertIn("buying the developer a Mountain Dew", body)
         self.assertIn("https://ko-fi.com/mockinteractive", body)
-        self.assertIn("Buy a Mountain Dew", body)
+        self.assertIn("Buy Ginger Dev a Mountain Dew", body)
         self.assertIn("Only required for the initial download and optional support links", body)
         self.assertIn("Saved you some time or a headache?", body)
         self.assertIn("remember separate starting folders", body)

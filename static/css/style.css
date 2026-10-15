@@ -590,6 +590,8 @@ code { padding: .08em .35em; color: var(--crown-gold); background: rgba(232,165,
 .download-meta { margin: 1rem 0 0 !important; color: var(--smoke) !important; font-size: .72rem !important; letter-spacing: .04em; }
 .download-warning { max-width: 620px; margin: .65rem 0 0 !important; color: #b5aa98 !important; font-size: .7rem !important; line-height: 1.55; }
 .download-warning strong { color: var(--bone); font-weight: 600; }
+.download-warning a { color: var(--crown-gold); text-decoration: underline; text-decoration-color: rgba(232,165,40,.45); text-underline-offset: 3px; }
+.download-warning a:hover { color: #f2b83e; text-decoration-color: currentColor; }
 .tools-page .text-link { letter-spacing: .08em; text-transform: none; }
 .hero-facts {
   display: flex;

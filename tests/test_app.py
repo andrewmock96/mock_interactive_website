@@ -36,6 +36,8 @@ class StarterSiteTests(unittest.TestCase):
         self.assertIn("View on GitHub", body)
         self.assertIn("fileforge-1.0-windows-x64.zip", body)
         self.assertIn("Windows SmartScreen may show an unknown-publisher warning", body)
+        self.assertIn("View the VirusTotal report for this exact build", body)
+        self.assertIn("c5a51af9905fb5c8827691f8b2417c3233f10c4d53ee5085d86005b3d7dcc98f", body)
         self.assertIn("https://github.com/andrewmock96/FileForge", body)
         self.assertIn("buying the developer a Mountain Dew", body)
         self.assertIn("https://ko-fi.com/mockinteractive", body)

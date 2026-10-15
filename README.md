@@ -19,6 +19,9 @@ and `FILEFORGE_REPO_URL`. Their defaults target the `andrewmock96/FileForge`
 GitHub project; override them in the deployment environment if the final
 repository name or hosting location changes.
 
+`FILEFORGE_VIRUSTOTAL_URL` links the security report for the exact executable
+in the current Windows release. Update it whenever the executable changes.
+
 `SUPPORT_URL` controls the optional “Buy Ginger Dev a Mountain Dew” support button and
 defaults to the official Mock Interactive Ko-fi page.
 

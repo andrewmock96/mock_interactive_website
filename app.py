@@ -52,6 +52,10 @@ def inject_site_metadata():
             "FILEFORGE_REPO_URL",
             "https://github.com/andrewmock96/FileForge",
         ),
+        "fileforge_virustotal_url": os.environ.get(
+            "FILEFORGE_VIRUSTOTAL_URL",
+            "https://www.virustotal.com/gui/file/c5a51af9905fb5c8827691f8b2417c3233f10c4d53ee5085d86005b3d7dcc98f/detection",
+        ),
         "support_url": os.environ.get(
             "SUPPORT_URL", "https://ko-fi.com/mockinteractive"
         ).strip(),

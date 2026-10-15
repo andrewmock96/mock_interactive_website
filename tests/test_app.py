@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 
 from app import app
 
@@ -68,6 +69,14 @@ class StarterSiteTests(unittest.TestCase):
                 self.assertEqual(response.status_code, 200)
                 self.assertGreater(len(response.data), 100)
                 response.close()
+
+    def test_cloudflare_analytics_is_enabled_only_with_a_token(self):
+        with patch.dict(
+            "os.environ", {"CLOUDFLARE_WEB_ANALYTICS_TOKEN": "test-token"}
+        ):
+            body = self.client.get("/").get_data(as_text=True)
+        self.assertIn("https://static.cloudflareinsights.com/beacon.min.js", body)
+        self.assertIn('data-cf-beacon=\'{"token":"test-token"}\'', body)
 
     def test_mobile_hero_focuses_the_disc(self):
         response = self.client.get("/static/css/style.css")

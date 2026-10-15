@@ -19,8 +19,14 @@ and `FILEFORGE_REPO_URL`. Their defaults target the `andrewmock96/FileForge`
 GitHub project; override them in the deployment environment if the final
 repository name or hosting location changes.
 
-`SUPPORT_URL` controls the optional “Buy a Mountain Dew” support button and
+`SUPPORT_URL` controls the optional “Buy Ginger Dev a Mountain Dew” support button and
 defaults to the official Mock Interactive Ko-fi page.
+
+`CLOUDFLARE_WEB_ANALYTICS_TOKEN` enables Cloudflare Web Analytics. Create a
+Web Analytics site for `mockinteractive.com`, copy its site token, and set that
+token in the Render environment. When the variable is unset, the analytics
+beacon is not included. GitHub release asset counts remain the source of truth
+for File Forge downloads; website analytics measure visits, not installations.
 
 ## Deploy to Render
 

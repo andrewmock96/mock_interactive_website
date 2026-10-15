@@ -18,3 +18,5 @@ services:
         value: Atmospheric games, meaningful systems, and unforgettable interactive worlds.
       - key: SITE_EMAIL
         sync: false
+      - key: CLOUDFLARE_WEB_ANALYTICS_TOKEN
+        sync: false

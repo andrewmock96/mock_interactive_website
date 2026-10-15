@@ -55,6 +55,9 @@ def inject_site_metadata():
         "support_url": os.environ.get(
             "SUPPORT_URL", "https://ko-fi.com/mockinteractive"
         ).strip(),
+        "cloudflare_analytics_token": os.environ.get(
+            "CLOUDFLARE_WEB_ANALYTICS_TOKEN", ""
+        ).strip(),
         "canonical_url": f"{site_url()}{request.path}",
         "current_year": datetime.now(timezone.utc).year,
     }

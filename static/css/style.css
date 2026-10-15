@@ -588,6 +588,8 @@ code { padding: .08em .35em; color: var(--crown-gold); background: rgba(232,165,
 .tools-page .repo-button { color: var(--bone); background: rgba(23,18,13,.72); border-color: rgba(185,170,142,.35); }
 .tools-page .repo-button:hover { color: var(--crown-gold); border-color: var(--crown-gold); }
 .download-meta { margin: 1rem 0 0 !important; color: var(--smoke) !important; font-size: .72rem !important; letter-spacing: .04em; }
+.download-warning { max-width: 620px; margin: .65rem 0 0 !important; color: #b5aa98 !important; font-size: .7rem !important; line-height: 1.55; }
+.download-warning strong { color: var(--bone); font-weight: 600; }
 .tools-page .text-link { letter-spacing: .08em; text-transform: none; }
 .hero-facts {
   display: flex;
